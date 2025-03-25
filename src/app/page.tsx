@@ -3,6 +3,8 @@ import FirstStep from "@/components/molecules/firstStep";
 import FirstStepSchedule from "@/components/molecules/firstStep/schedule";
 import SecondStep from "@/components/molecules/secondStep";
 import SecondStepSchedule from "@/components/molecules/secondStep/schedule";
+import ThirdStep from "@/components/molecules/thirdStep";
+import ThirdStepSchedule from "@/components/molecules/thirdStep/schedule";
 import { Button } from "@/components/ui/button";
 import { useStore } from "@/lib/store";
 import { ScheduleResult } from "@/lib/types";
@@ -27,6 +29,7 @@ export default function Home() {
   }
 
   const stepsSort = [
+    {schedule: ThirdStepSchedule, component: <ThirdStep/>},
     {schedule: SecondStepSchedule, component: <SecondStep/>},
     {schedule: FirstStepSchedule, component: <FirstStep/>},
   ]
