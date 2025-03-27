@@ -7,16 +7,16 @@ export type State = {
     setCriteria: (props: string[]) => void;
     alternatives: string[];
     setAlternatives: (props: string[]) => void;
-    linguisticTerms: { [key: string]: [number, number, number] }[];
-    setLinguisticTerms: (props: { [key: string]: [number, number, number] }[]) => void;
+    linguisticTerms: { [key: string]: number[] }[];
+    setLinguisticTerms: (props: { [key: string]: number[] }[]) => void;
 }
 
 export const useStore = create<State>((set) => ({
-    class: [],
+    class: ["baixo_risco", "medio_risco", "alto_risco"],
     setClass: (props) => set({ class: props }),
-    criteria: [],
+    criteria: ["C1", "C2", "C3"],
     setCriteria: (props) => set({ criteria: props }),
-    alternatives: [],
+    alternatives: ["A1", "A2", "A3"],
     setAlternatives: (props) => set({ alternatives: props }),
     linguisticTerms: [],
     setLinguisticTerms: (props) => set({ linguisticTerms: props })

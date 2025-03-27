@@ -29,9 +29,9 @@ export default function Home() {
   }
 
   const stepsSort = [
-    {schedule: ThirdStepSchedule, component: <ThirdStep/>},
-    {schedule: SecondStepSchedule, component: <SecondStep/>},
     {schedule: FirstStepSchedule, component: <FirstStep/>},
+    {schedule: SecondStepSchedule, component: <SecondStep/>},
+    {schedule: ThirdStepSchedule, component: <ThirdStep/>},
   ]
 
   const Component = useMemo(() => {

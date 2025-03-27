@@ -1,23 +1,18 @@
 "use client"
-import StringArrayManager from "@/components/atoms/register-array";
-import KeyValueManager from "@/components/atoms/register-key-value";
+import LinguisticTerms from "@/components/atoms/linguistic-terms";
 import { useStore } from "@/lib/store";
 import { useEffect, useState } from "react";
 
-export default function SecondStep() {
+export default function ThirdStep() {
   const store = useStore((state) => state)
 
-  const [criteriaTypes, setCriteriaTypes] = useState(
-    store.criteria.map((criteria) => ( {key: criteria, value: ""} ))
-)
-
   useEffect(() => {
-    console.log(criteriaTypes)
-  }, [criteriaTypes])
+    console.log(store.linguisticTerms)
+  }, [store.linguisticTerms])
   return (
       <div className="flex flex-wrap gap-6 w-full">
 
-        <KeyValueManager title="Tipo dos critérios" items={criteriaTypes} setItems={setCriteriaTypes} />
+        <LinguisticTerms title="Termos Linguísticos" items={store.linguisticTerms} setItems={store.setLinguisticTerms} />
         {/* <StringArrayManager title="Critérios" items={store.criteria} setItems={store.setCriteria} />
         <StringArrayManager title="Alternativas" items={store.alternatives} setItems={store.setAlternatives} /> */}
       </div>
