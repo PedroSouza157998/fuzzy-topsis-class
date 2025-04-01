@@ -7,7 +7,9 @@ export default function FuzzyNumberInput({ type, value }: {
     type: 'triangular' | 'trapezoidal';
     value: number[];
 }) {
-    const [values, setValues] = useState([0, 0, 0]);
+
+    console.log(value)
+    const [values, setValues] = useState(value);
 
     const handleChange = (index: number, value: string) => {
         const newValue = parseFloat(value);
@@ -17,13 +19,9 @@ export default function FuzzyNumberInput({ type, value }: {
     };
 
     useEffect(() => {
-        if (type === 'triangular') {
-            setValues([0, 0, 0]);
-        }
-        else if (type === 'trapezoidal') {
-            setValues([0, 0, 0, 0]);
-        }
-    }, [type]);
+        setValues(value)
+    }, [value])
+
     return (
         <div className="flex gap-2">
             {values.map((value, index) => (

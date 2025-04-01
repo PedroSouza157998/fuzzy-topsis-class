@@ -2,7 +2,7 @@
 import { useStore } from "@/lib/store";
 import { useEffect } from "react";
 
-export default function FourthStep() {
+export default function FifthStep() {
   const store = useStore((state) => state);
 
   const {linguisticTerms} = store
@@ -21,8 +21,8 @@ export default function FourthStep() {
         <table className="table-auto border-collapse border border-gray-300 w-full">
           <thead>
             <tr>
-              <th className="border border-gray-300 px-4 py-2">Critérios / Alternativas</th>
-              {store.alternatives.map((alternative: string, index: number) => (
+              <th className="border border-gray-300 px-4 py-2">Critérios / Clases</th>
+              {store.class.map((alternative: string, index: number) => (
                 <th key={index} className="border border-gray-300 px-4 py-2">
                   {alternative}
                 </th>
@@ -33,11 +33,13 @@ export default function FourthStep() {
             {store.criteria.map((criterion: string, criterionIndex: number) => (
               <tr key={criterionIndex}>
                 <td className="border border-gray-300 px-4 py-2">{criterion}</td>
-                {store.alternatives.map((_, alternativeIndex: number) => (
+                {store.class.map((_, alternativeIndex: number) => (
                   <td key={alternativeIndex} className="border border-gray-300 px-4 py-2">
                     <select
                       className="border border-gray-300 rounded px-2 py-1"
-                      onChange={(e) => handleDropdownChange(criterionIndex, alternativeIndex, e.target.value)}
+                      onChange={(e) =>
+                        handleDropdownChange(criterionIndex, alternativeIndex, e.target.value)
+                      }
                     >
                       <option value="">Selecione</option>
                       {Object.keys(linguisticTerms).map((term: string, termIndex: number) => (

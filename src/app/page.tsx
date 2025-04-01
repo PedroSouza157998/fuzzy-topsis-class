@@ -5,11 +5,14 @@ import SecondStep from "@/components/molecules/secondStep";
 import SecondStepSchedule from "@/components/molecules/secondStep/schedule";
 import ThirdStep from "@/components/molecules/thirdStep";
 import ThirdStepSchedule from "@/components/molecules/thirdStep/schedule";
+import FourthStep from "@/components/molecules/fourthStep";
+import FourthStepSchedule from "@/components/molecules/fourthStep/schedule"; // Certifique-se de criar este arquivo
 import { Button } from "@/components/ui/button";
 import { useStore } from "@/lib/store";
 import { ScheduleResult } from "@/lib/types";
 import { useMemo, useState } from "react";
 import { toast } from 'react-toastify';
+import FifthStep from "@/components/molecules/fifthStep";
 
 
 export default function Home() {
@@ -32,6 +35,8 @@ export default function Home() {
     {schedule: FirstStepSchedule, component: <FirstStep/>},
     {schedule: SecondStepSchedule, component: <SecondStep/>},
     {schedule: ThirdStepSchedule, component: <ThirdStep/>},
+    {schedule: FourthStepSchedule, component: <FourthStep/>}, // Adicionado o FourthStep
+    {schedule: FourthStepSchedule, component: <FifthStep/>}, // Adicionado o FourthStep
   ]
 
   const Component = useMemo(() => {
