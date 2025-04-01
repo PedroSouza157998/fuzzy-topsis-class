@@ -29,7 +29,6 @@ export default function KeyValueManager({ title, items, setItems }: Props) {
       if(item.key === key) return {key, value: newValue}
       return item
     })
-    console.log(newItems)
     setItems(newItems)
   };
 

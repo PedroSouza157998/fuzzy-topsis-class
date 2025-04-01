@@ -1,19 +1,24 @@
 "use client"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useStore } from "@/lib/store";
-import { useEffect } from "react";
 
 export default function FourthStep() {
-  const store = useStore((state) => state);
+  const {alternatives, linguisticTerms, criteria, performanceMatrix, setPerformanceMatrix} = useStore((state) => state);
 
-  const { linguisticTerms } = store
-
-  useEffect(() => {
-    console.log("Linguistic Terms:", linguisticTerms);
-  }, [linguisticTerms]);
 
   const handleDropdownChange = (criterionIndex: number, alternativeIndex: number, value: string) => {
-    console.log(`Criterion ${criterionIndex}, Alternative ${alternativeIndex}, Selected: ${value}`);
+    const alternative = alternatives[alternativeIndex]
+
+    let newRow = performanceMatrix[alternative]
+
+    newRow[criterionIndex] = value
+
+    const newValue = {
+      [alternative]: newRow,
+      ...performanceMatrix
+    }
+
+    setPerformanceMatrix(newValue)
   };
 
   return (
@@ -23,7 +28,7 @@ export default function FourthStep() {
           <thead>
             <tr>
               <th className="border border-gray-300 px-4 py-2">Critérios / Alternativas</th>
-              {store.alternatives.map((alternative: string, index: number) => (
+              {alternatives.map((alternative: string, index: number) => (
                 <th key={index} className="border border-gray-300 px-4 py-2">
                   {alternative}
                 </th>
@@ -31,14 +36,13 @@ export default function FourthStep() {
             </tr>
           </thead>
           <tbody>
-            {store.criteria.map((criterion: string, criterionIndex: number) => (
+            {criteria.map((criterion: string, criterionIndex: number) => (
               <tr key={criterionIndex}>
                 <td className="border border-gray-300 px-4 py-2">{criterion}</td>
-                {store.alternatives.map((_, alternativeIndex: number) => (
+                {alternatives.map((_, alternativeIndex: number) => (
                   <td key={alternativeIndex} className="border border-gray-300 px-4 py-2">
                     <Select
                       onValueChange={(value: string) => handleDropdownChange(criterionIndex, alternativeIndex, value)}
-                    // onChange={(e) => handleDropdownChange(criterionIndex, alternativeIndex, e.target.value)}
                     >
                       <SelectTrigger className="w-[180px]">
                         <SelectValue placeholder="" />

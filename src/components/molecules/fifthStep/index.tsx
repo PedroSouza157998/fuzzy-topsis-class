@@ -1,20 +1,27 @@
 "use client"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useStore } from "@/lib/store";
-import { useEffect } from "react";
 
 export default function FifthStep() {
   const store = useStore((state) => state);
 
-  const {linguisticTerms} = store
+  const {linguisticTerms, class: classes, referenceProfile, setReferenceProfile} = store
 
-  useEffect(() => {
-    console.log("Linguistic Terms:", linguisticTerms);
-  }, [linguisticTerms]);
+  const handleDropdownChange = (criterionIndex: number, classIndex: number, value: string) => {
+    const row = classes[classIndex]
 
-  const handleDropdownChange = (criterionIndex: number, alternativeIndex: number, value: string) => {
-    console.log(`Criterion ${criterionIndex}, Alternative ${alternativeIndex}, Selected: ${value}`);
+    let newRow = referenceProfile[row]
+
+    newRow[criterionIndex] = value
+
+    const newValue = {
+      [row]: newRow,
+      ...referenceProfile
+    }
+
+    setReferenceProfile(newValue)
   };
+
 
   return (
     <div className="flex flex-col gap-6 w-full">

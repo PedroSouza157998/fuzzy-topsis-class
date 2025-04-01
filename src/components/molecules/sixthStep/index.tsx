@@ -1,3 +1,4 @@
+import { useStore } from '@/lib/store';
 import React from 'react';
 
 export default function SixthStep() {
@@ -31,6 +32,8 @@ export default function SixthStep() {
     },
   };
 
+  const store = useStore()
+  console.log(store)
   return (
     <div className="p-6 font-sans max-w-4xl rounded-lg border shadow-2xl m-auto">
       <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">Resultados</h1>

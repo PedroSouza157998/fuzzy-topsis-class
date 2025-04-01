@@ -1,5 +1,4 @@
 "use client"
-import StringArrayManager from "@/components/atoms/register-array";
 import KeyValueManager from "@/components/atoms/register-key-value";
 import { useStore } from "@/lib/store";
 import { useEffect, useState } from "react";
@@ -11,9 +10,6 @@ export default function SecondStep() {
     Object.keys(criteriasType).map((criteria) => ( {key: criteria, value: criteriasType[criteria]} ))
 )
 
-  useEffect(() => {
-    console.log(criteriaTypes)
-  }, [criteriaTypes])
   return (
       <div className="flex flex-wrap gap-6 w-full">
 

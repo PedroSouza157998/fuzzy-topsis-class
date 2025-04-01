@@ -8,7 +8,6 @@ export default function FuzzyNumberInput({ type, value }: {
     value: number[];
 }) {
 
-    console.log(value)
     const [values, setValues] = useState(value);
 
     const handleChange = (index: number, value: string) => {
