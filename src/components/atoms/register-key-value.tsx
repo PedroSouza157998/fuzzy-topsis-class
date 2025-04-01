@@ -14,7 +14,7 @@ import {
 
 interface KeyValue {
   key: string;
-  value: string;
+  value:  "max" | "min";
 }
 
 interface Props {
@@ -24,7 +24,7 @@ interface Props {
 }
 
 export default function KeyValueManager({ title, items, setItems }: Props) {
-  const updateValue = (key: string, newValue: string) => {
+  const updateValue = (key: string, newValue: 'min' | 'max') => {
     const newItems = items.map((item) => {
       if(item.key === key) return {key, value: newValue}
       return item
@@ -38,13 +38,13 @@ export default function KeyValueManager({ title, items, setItems }: Props) {
       <h2 className="text-xl font-bold mb-4">{title}</h2>
       <CardContent>
         <ul className="space-y-2">
-          {items.map(({ key }) => (
+          {items.map(({ key, value }) => (
             <li
               key={key}
               className="flex justify-between items-center bg-gray-100 p-2 gap-8 rounded-lg"
             >
               <span className="font-bold">{key}:</span>
-              <Select onValueChange={(value) => updateValue(key, value)}>
+              <Select onValueChange={(value: 'min' | 'max') => updateValue(key, value)} value={value}>
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="" />
                 </SelectTrigger>

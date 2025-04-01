@@ -5,10 +5,10 @@ import { useStore } from "@/lib/store";
 import { useEffect, useState } from "react";
 
 export default function SecondStep() {
-  const store = useStore((state) => state)
+  const {criteriasType} = useStore((state) => state)
 
   const [criteriaTypes, setCriteriaTypes] = useState(
-    store.criteria.map((criteria) => ( {key: criteria, value: ""} ))
+    Object.keys(criteriasType).map((criteria) => ( {key: criteria, value: criteriasType[criteria]} ))
 )
 
   useEffect(() => {

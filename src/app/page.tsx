@@ -13,6 +13,7 @@ import { ScheduleResult } from "@/lib/types";
 import { useMemo, useState } from "react";
 import { toast } from 'react-toastify';
 import FifthStep from "@/components/molecules/fifthStep";
+import SixthStep from "@/components/molecules/sixthStep";
 
 
 export default function Home() {
@@ -37,6 +38,7 @@ export default function Home() {
     {schedule: ThirdStepSchedule, component: <ThirdStep/>},
     {schedule: FourthStepSchedule, component: <FourthStep/>}, // Adicionado o FourthStep
     {schedule: FourthStepSchedule, component: <FifthStep/>}, // Adicionado o FourthStep
+    {schedule: FourthStepSchedule, component: <SixthStep/>}, // Adicionado o FourthStep
   ]
 
   const Component = useMemo(() => {

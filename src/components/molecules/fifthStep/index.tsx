@@ -1,4 +1,5 @@
 "use client"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useStore } from "@/lib/store";
 import { useEffect } from "react";
 
@@ -35,19 +36,21 @@ export default function FifthStep() {
                 <td className="border border-gray-300 px-4 py-2">{criterion}</td>
                 {store.class.map((_, alternativeIndex: number) => (
                   <td key={alternativeIndex} className="border border-gray-300 px-4 py-2">
-                    <select
-                      className="border border-gray-300 rounded px-2 py-1"
-                      onChange={(e) =>
-                        handleDropdownChange(criterionIndex, alternativeIndex, e.target.value)
-                      }
+                    <Select
+                      onValueChange={(value: string) => handleDropdownChange(criterionIndex, alternativeIndex, value)}
+                    // onChange={(e) => handleDropdownChange(criterionIndex, alternativeIndex, e.target.value)}
                     >
-                      <option value="">Selecione</option>
-                      {Object.keys(linguisticTerms).map((term: string, termIndex: number) => (
-                        <option key={termIndex} value={term}>
-                          {term}
-                        </option>
-                      ))}
-                    </select>
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {Object.keys(linguisticTerms).map((term: string, termIndex: number) => (
+                          <SelectItem key={termIndex} value={term}>
+                            {term}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </td>
                 ))}
               </tr>
