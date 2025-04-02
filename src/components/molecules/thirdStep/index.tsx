@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import FuzzyNumberInput from "@/components/atoms/fuzzy-number-input";
+import SwitchInput from "@/components/atoms/switch-input";
 import { useStore } from "@/lib/store";
 
 export default function ThirdStep() {
@@ -61,9 +62,7 @@ export default function ThirdStep() {
         <h2 className="text-xl font-bold mb-4">Termos Linguísticos</h2>
         <CardContent>
           <div className="flex justify-between mb-4">
-            <Button variant="outline" onClick={handleToggleType}>
-              {type === "triangular" ? "Trapezoidal" : "Triangular"}
-            </Button>
+          <SwitchInput  onToggle={handleToggleType} isChecked={type}/>
           </div>
           <ul className="space-y-4">
             {items.map(({ label, value }, index) => (
