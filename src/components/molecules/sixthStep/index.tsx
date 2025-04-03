@@ -1,5 +1,5 @@
 import { useStore } from '@/lib/store';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 export default function SixthStep() {
   const results = {
@@ -33,7 +33,50 @@ export default function SixthStep() {
   };
 
   const store = useStore()
+
+  function invertDataStructure(data: any) {
+    const keys = Object.keys(data);
+    const numColumns = data[keys[0]].length;
+
+    const inverted: any = {};
+
+    for (let i = 0; i < numColumns; i++) {
+      inverted[store.criteria[i]] = keys.map(key => data[key][i]);
+    }
+
+    return inverted;
+  }
+
+  const request = useMemo(() => {
+
+    const weights: { [key: string]: string } = {}
+
+    store.criteriaWeights.forEach((row) => {
+      weights[row.criterion] = row.weight
+    })
+
+    function replaceValues(data: any) {
+      const replacements = { "max": "Benefit", "min": "Cost" };
+      return Object.fromEntries(
+        Object.entries(data).map(([key, value]) => [key, replacements[value] || value])
+      );
+    }
+
+    return {
+      linguistic_variables_alternatives: store.linguisticTerms,
+      linguistic_variables_weights: store.linguisticTermsWeights,
+      suppliers: store.alternatives,
+      profile_mapping: Object(store.class),
+      weights,
+      profile_matrix: invertDataStructure(store.referenceProfile),
+      decision_matrix: invertDataStructure(store.performanceMatrix),
+      criteria_type: replaceValues(store.criteriasType)
+    }
+  }, [store])
+
   console.log(store)
+  console.log(request)
+
   return (
     <div className="p-6 font-sans max-w-4xl rounded-lg border shadow-2xl m-auto">
       <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">Resultados</h1>

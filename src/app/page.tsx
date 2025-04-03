@@ -21,12 +21,14 @@ import BackThridStepSchedule from "@/components/molecules/thirdStep/back";
 import BackFourthStepSchedule from "@/components/molecules/fourthStep/back";
 import BackFifhStepSchedule from "@/components/molecules/fifthStep/back";
 import BackSixStepSchedule from "@/components/molecules/sixthStep/back"
+import LinguisticTermsWeight from "@/components/molecules/linguisticTermsWeight";
+import CriteriaWeightsSelector from "@/components/molecules/criteriaWeight";
 
 export default function Home() {
   const store = useStore((state) => state)
 
   const [step, setStep] = useState(0)
-  
+
   const handleNextStep = (func: () => ScheduleResult) => {
     const result = func()
 
@@ -38,10 +40,11 @@ export default function Home() {
     }
   }
 
-  const handleBackStep = (func: () => ScheduleResult) => {
+  const handleBackStep = (func?: () => ScheduleResult) => {
+
+    if(!func) return setStep(step - 1)
 
     const result = func()
-    console.log(result)
 
     if (result.success) {
       setStep(step - 1)
@@ -53,25 +56,27 @@ export default function Home() {
   }
 
   const stepsSort = [
-    {schedule: FirstStepSchedule, component: <FirstStep/>},
-    {schedule: SecondStepSchedule, component: <SecondStep/>, back: BackSecondStepSchedule},
-    {schedule: ThirdStepSchedule, component: <ThirdStep/>, back: BackThridStepSchedule},
-    {schedule: FourthStepSchedule, component: <FourthStep/>, back: BackFourthStepSchedule}, // Adicionado o FourthStep
-    {schedule: FourthStepSchedule, component: <FifthStep/>, back: BackFifhStepSchedule}, // Adicionado o FifthStep
-    {schedule: FourthStepSchedule, component: <SixthStep/>, back: BackSixStepSchedule}, // Adicionado o SixthStep
+    { schedule: FirstStepSchedule, component: <FirstStep /> },
+    { schedule: SecondStepSchedule, component: <SecondStep />, back: BackSecondStepSchedule },
+    { schedule: ThirdStepSchedule, component: <ThirdStep />, back: BackThridStepSchedule },
+    { schedule: FourthStepSchedule, component: <LinguisticTermsWeight />, back: BackFourthStepSchedule }, // Adicionado o FourthStep
+    { schedule: FourthStepSchedule, component: <CriteriaWeightsSelector />, back: BackFourthStepSchedule }, // Adicionado o FourthStep
+    { schedule: FourthStepSchedule, component: <FourthStep />, back: BackFourthStepSchedule }, // Adicionado o FourthStep
+    { schedule: FourthStepSchedule, component: <FifthStep />, back: BackFifhStepSchedule }, // Adicionado o FifthStep
+    { schedule: FourthStepSchedule, component: <SixthStep />, back: BackSixStepSchedule }, // Adicionado o SixthStep
   ]
 
   const Component = useMemo(() => {
-    if(stepsSort[step]) return stepsSort[step].component
+    if (stepsSort[step]) return stepsSort[step].component
     else return <></>
   }, [step])
 
   const Schedule = useMemo(() => {
-    if(stepsSort[step]) return stepsSort[step].schedule
+    if (stepsSort[step]) return stepsSort[step].schedule
   }, [step])
 
   const BackStep = useMemo(() => {
-    if(stepsSort[step]) return stepsSort[step].back
+    if (stepsSort[step]) return stepsSort[step].back
   }, [step])
 
 
@@ -79,20 +84,21 @@ export default function Home() {
     <>
       <div className="flex flex-col gap-6 items-end p-12">
         {Component}
-        <Button onClick={() => Schedule && handleNextStep(() => Schedule(store))}>Próximo</Button>
+        <div className="flex w-full p-8 justify-between">
 
-        <div className="flex flex-col gap-6 items-start">
           <Button
-            onClick={() => BackStep && handleBackStep(() => BackStep(store))}
-            //disabled={step === 1}
-            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
+            onClick={() => handleBackStep()}
+            className="bg-red-500 text-white hover:bg-red-600"
           >
             Voltar
           </Button>
+
+          <Button onClick={() => Schedule && handleNextStep(() => Schedule(store))}>Próximo</Button>
+
         </div>
       </div>
-      
-      
+
+
     </>
   )
 }

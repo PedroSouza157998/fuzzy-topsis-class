@@ -3,7 +3,7 @@ import { ScheduleResult } from "@/lib/types";
 
 export default function BackFourthStepSchedule(state: State): ScheduleResult {
 
-    state.setLinguisticTerms({"": [0]})
+    state.setLinguisticTerms({"": []})
 
     return {success: true, message: 'Etapa retornada com sucesso!'}
 }
