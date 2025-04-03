@@ -82,7 +82,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="flex flex-col gap-6 items-end p-12">
+      <div className="flex flex-col gap-6 items-end py-12 mx-6">
         {Component}
         <div className="flex w-full p-8 justify-between">
 

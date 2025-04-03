@@ -65,7 +65,7 @@ export default function SixthStep() {
     return {
       linguistic_variables_alternatives: store.linguisticTerms,
       linguistic_variables_weights: store.linguisticTermsWeights,
-      suppliers: store.alternatives,
+      alternatives: store.alternatives,
       profile_mapping: Object(store.class),
       weights,
       profile_matrix: invertDataStructure(store.referenceProfile),

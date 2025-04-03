@@ -23,6 +23,7 @@ export default function FourthStep() {
 
   return (
     <div className="flex flex-col gap-6 w-full">
+      <h1 className="text-center font-bold text-2xl">Matriz de Performance</h1>
       <div className="overflow-x-auto">
         <table className="table-auto border-collapse border border-gray-300 w-full">
           <thead>

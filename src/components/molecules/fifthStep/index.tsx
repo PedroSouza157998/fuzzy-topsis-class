@@ -25,11 +25,12 @@ export default function FifthStep() {
 
   return (
     <div className="flex flex-col gap-6 w-full">
+      <h1 className="text-center font-bold text-2xl">Perfil de Referência</h1>
       <div className="overflow-x-auto">
         <table className="table-auto border-collapse border border-gray-300 w-full">
           <thead>
             <tr>
-              <th className="border border-gray-300 px-4 py-2">Critérios / Clases</th>
+              <th className="border border-gray-300 px-4 py-2">Critérios / Classes</th>
               {store.class.map((alternative: string, index: number) => (
                 <th key={index} className="border border-gray-300 px-4 py-2">
                   {alternative}
