@@ -86,14 +86,14 @@ export default function Home() {
         {Component}
         <div className="flex w-full p-8 justify-between">
 
-          <Button
+          {step > 0 ? <Button
             onClick={() => handleBackStep()}
             className="bg-red-500 text-white hover:bg-red-600"
           >
             Voltar
-          </Button>
+          </Button> : <div></div>}
 
-          <Button onClick={() => Schedule && handleNextStep(() => Schedule(store))}>Próximo</Button>
+          {step === stepsSort.length - 1 ? <div></div> : <Button onClick={() => Schedule && handleNextStep(() => Schedule(store))}>Próximo</Button>}
 
         </div>
       </div>

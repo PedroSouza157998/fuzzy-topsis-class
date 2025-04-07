@@ -99,20 +99,25 @@ export default function SixthStep() {
             <thead>
               <tr className="bg-gray-200 text-gray-700">
                 <th className="border px-4 py-2">Alternativa</th>
-                <th className="border px-4 py-2">Baixo Risco</th>
-                <th className="border px-4 py-2">Médio Risco</th>
-                <th className="border px-4 py-2">Alto Risco</th>
+                {Object.entries(results.classification).map(([key, value]) => {
+                  return <th key={key} className="border px-4 py-2">{value}</th>
+                })}
               </tr>
             </thead>
             <tbody>
-              {Object.entries(results.proximities).map(([key, value], index) => (
+              {Object.entries(results.proximities).map(([key, value], index) => {
+                console.log([key, value])
+                return (
                 <tr key={key} className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}>
                   <td className="border px-4 py-2 text-center font-medium text-gray-700">{key}</td>
-                  <td className="border px-4 py-2 text-center">{value.Baixo_Risco}</td>
-                  <td className="border px-4 py-2 text-center">{value.Médio_Risco}</td>
-                  <td className="border px-4 py-2 text-center">{value.Alto_Risco}</td>
+                  {Object.values(value).map((classe) => {
+                    return (
+                      <td key={classe} className="border px-4 py-2 text-center">{classe}</td>
+                      
+                    )
+                  })}
                 </tr>
-              ))}
+              )})}
             </tbody>
           </table>
         </div>
